@@ -2,12 +2,9 @@ import { LiveShip, shipClassMainLookup, shipClassSubtypeLookup } from "../marine
 import { storeDataFrames, storePositionFrames } from "./db-interface";
 import { DataFrame, PositionFrame } from "./types";
 
-let lastLiveUpdate = 0;
 
 export const handleLiveUpdate = (ships: LiveShip[]) => {
   const now = Date.now();
-  if (now - lastLiveUpdate < 500) return;
-
   const epoch = Math.trunc(now / 60_000) * 60;
 
   const dataframes: DataFrame[] = [];
@@ -54,6 +51,4 @@ export const handleLiveUpdate = (ships: LiveShip[]) => {
 
   storeDataFrames(dataframes);
   storePositionFrames(positionframes);
-
-  lastLiveUpdate = now;
 };
