@@ -4,24 +4,23 @@ import { executeQuery } from "./features/db-interface";
 
 const Options = () => {
   const [positionCounts, setPositionCounts] = useState(-1);
-  const [dataCounts, setDataCounts] = useState(-1);
 
   const updateCounts = () => {
-    executeQuery<any[]>("SELECT COUNT(*) as c FROM aircraft_positions").then(
-      (result) => setDataCounts(result[0].c)
-    );
-
-    executeQuery<any[]>("SELECT COUNT(*) as c FROM aircraft_data").then(
+    executeQuery<any[]>("SELECT COUNT(*) as c FROM ship_positions").then(
       (result) => setPositionCounts(result[0].c)
     );
   };
 
   const clearDb = () => {
-    executeQuery<any[]>("DELETE FROM aircraft_positions").then(() =>
-      executeQuery<any[]>("DELETE FROM aircraft_data").then(() => {
-        updateCounts();
-      })
-    );
+    executeQuery<any[]>(
+      `
+      DELETE FROM ship_positions; 
+      DELETE FROM ship_name;
+      DELETE FROM ship_mmsi;
+      DELETE FROM ship_flag;
+      DELETE FROM ship_class;
+      `
+    ).then(() => updateCounts());
   };
 
   useEffect(() => updateCounts());
@@ -31,11 +30,9 @@ const Options = () => {
       <dl>
         <dt>Known ship positions</dt>
         <dd>{positionCounts}</dd>
-
-        <dt>Known ship data updates</dt>
-        <dd>{dataCounts}</dd>
       </dl>
-      <button onClick={updateCounts}>Update</button> <button onClick={clearDb}>Clear DB</button>
+      <button onClick={updateCounts}>Update</button>{" "}
+      <button onClick={clearDb}>Clear DB</button>
     </>
   );
 };
