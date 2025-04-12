@@ -43,7 +43,7 @@ export const handleLiveUpdate = (ships: LiveShip[]) => {
       id: parseInt(ship.SHIP_ID),
       lat: parseFloat(ship.LAT),
       lon: parseFloat(ship.LON),
-      speed: parseFloat(ship.SPEED),
+      speed: parseFloat(ship.SPEED) / 10.0,
       heading: parseFloat(ship.COURSE),
       source: "live"
     });

@@ -37,7 +37,7 @@ export const PositionFrameCreateCommand = `
         id UINTEGER NOT NULL,
         lat FLOAT NOT NULL,
         lon FLOAT NOT NULL,
-        speed INT,
+        speed FLOAT,
         heading INT,
         source VARCHAR,
         PRIMARY KEY (ts, id)

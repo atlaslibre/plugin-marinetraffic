@@ -37,7 +37,7 @@ export const handlePlaybackUpdate = (ships: PlaybackShip[]) => {
         id: parseInt(ship.SHIP_ID),
         lat: parseFloat(pos.LAT),
         lon: parseFloat(pos.LON),
-        speed: parseFloat(pos.SPEED),
+        speed: parseFloat(pos.SPEED) / 10.0,
         heading: parseFloat(pos.COURSE),
         source: "playback"
       });
