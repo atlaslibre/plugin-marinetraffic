@@ -1,6 +1,7 @@
 export interface PluginDescriptor {
   type: "actor";
   name: string;
+  attribution?: string;
   replay: boolean;
   locate: boolean;
   status: boolean;
