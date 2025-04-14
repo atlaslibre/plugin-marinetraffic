@@ -15,6 +15,7 @@ import {
 } from "./features/track";
 import { updateIcon } from "./shared/utilities";
 import { handleDetailsUpdate } from "./features/detailsupdate";
+import { handleTrackUpdate } from "./features/trackupdate";
 
 await setupOffscreenDocument("offscreen.html");
 
@@ -96,6 +97,10 @@ chrome.runtime.onMessage.addListener(function (msg) {
 
   if (msg.type === "details") {
     handleDetailsUpdate(msg.data);
+  }
+
+  if (msg.type === "track") {
+    handleTrackUpdate(msg.data);
   }
 
   if (msg.type === "playback") {
