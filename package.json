@@ -1,6 +1,6 @@
 {
   "name": "atlaslibre-plugin-marinetraffic",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "AtlasLibre Chrome Plugin for Marinetraffic",
   "main": "index.js",
   "scripts": {
